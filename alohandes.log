@@ -4,3 +4,17 @@
 17:49:19,884 (main) INFO  [uniandes.isis2304.alohandes.interfazApp.InterfazAlohAndesApp] - Se encontrÃ³ un archivo de configuraciÃ³n vÃ¡lido: Interfaz
 17:49:19,884 (main) INFO  [uniandes.isis2304.alohandes.interfazApp.InterfazAlohAndesApp] - Se aplica configuraciÃ³n indicada en el archivo de configuraciÃ³n
 17:49:19,896 (main) INFO  [uniandes.isis2304.alohandes.interfazApp.InterfazAlohAndesApp] - Se encontrÃ³ un archivo de configuraciÃ³n vÃ¡lido: Tablas BD
+16:56:26,625 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+16:56:26,625 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+16:56:26,672 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+16:59:22,846 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+16:59:22,846 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+16:59:22,877 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+17:03:32,236 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+17:03:32,236 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+17:03:32,283 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+17:04:05,316 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Cliente
+17:04:05,724 (AWT-EventQueue-0) ERROR [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO CLIENTE(id, nombre, correo, telefono, tipoMiembro) values (?, ?, ?, ?, ?)".
+ORA-00001: restricción única (ISIS2304C05202310.CLIENTE_PK) violada
+
+17:04:05,748 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Cliente: null

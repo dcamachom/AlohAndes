@@ -14,6 +14,7 @@ import java.awt.Color;
 
 public class InterfazInic extends JFrame implements ActionListener{
 
+
 	private JsonObject guiConfig;
 
 	private static Logger log = Logger.getLogger(InterfazInic.class.getName());

@@ -31,7 +31,7 @@ public class InterfazCliente extends JFrame implements ActionListener{
 
 	private static Logger log = Logger.getLogger(InterfazCliente.class.getName());
 	private static final String CONFIG_INTERFAZ = "./src/main/resources/config/interfaceConfigCliente.json"; 
-	private static final String CONFIG_TABLAS = "./src/main/resources//config/TablasBD.json";
+	private static final String CONFIG_TABLAS = "./src/main/resources/config/TablasBD.json";
 	
 	private JsonObject tableConfig;
 	private AlohAndes alohAndes;
@@ -49,7 +49,7 @@ public class InterfazCliente extends JFrame implements ActionListener{
 	    configurarFrame ( );
 	    if (guiConfig != null) 	   
 	    {
-	   	crearMenu( guiConfig.getAsJsonArray("menuBar") );
+	   		crearMenu( guiConfig.getAsJsonArray("menuBar") );
 	    }
 	        
 	    tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
