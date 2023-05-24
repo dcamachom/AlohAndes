@@ -1,5 +1,6 @@
 package uniandes.isis2304.alohandes.negocio;
 
+import java.util.Date;
 import java.sql.Time;
 import java.util.List;
 
@@ -54,13 +55,14 @@ public class AlohAndes {
 	{
 		pa.cerrarUnidadPersistencia ();
 	}
-	/**
+	/***************************************
 	 * Métodos para manejar los Apartamentos
-	 */
-	public Apartamento adicionarApartamento (int costoBase, long idOperador, boolean amoblado, int cantHabitaciones)
+	 ***************************************/
+
+	public Apartamento adicionarApartamento (int costoBase, long idOperador, boolean amoblado, int cantHabitaciones, String estado, String tipo)
 	{
         log.info ("Adicionando Apartamento" );
-        Apartamento apartamento = pa.adicionarApartamento(costoBase, idOperador, amoblado, cantHabitaciones);		
+        Apartamento apartamento = pa.adicionarApartamento(costoBase, idOperador, amoblado, cantHabitaciones, estado, tipo);		
         log.info ("Adicionando Apartamento: " + apartamento);
         return apartamento;
 	}
@@ -84,9 +86,10 @@ public class AlohAndes {
 		Apartamento apto = pa.darApartamentoPorId(id);
 		return apto;
 	}
-	/**
+	/********************************
 	 * Métodos para manejar las Casas
-	 */
+	 ********************************/
+
 	public Casa adicionarCasa (int costoBase, long idOperador, int cantHabitaciones, String seguro)
 	{
         log.info ("Adicionando Casa" );
@@ -114,9 +117,9 @@ public class AlohAndes {
 		Casa casa = pa.darCasaPorId(id);
 		return casa;
 	}
-	/**
+	/************************************
 	 * Métodos para manejar los Clientes
-	 */
+	 ************************************/
 	public Cliente adicionarCliente (Long id, String nombre, String correo, String telefono, String tipoMiembro)
 	{
         log.info ("Adicionando Cliente" );
@@ -144,9 +147,10 @@ public class AlohAndes {
 		Cliente cliente = pa.darClientePorId(id);
 		return cliente;
 	}
-	/**
+	/***************************************
 	 * Métodos para manejar las Habitaciones
-	 */
+	 ***************************************/
+
 	public Habitacion adicionarHabitacion (int costoBase, long idOperador, int capacidad, boolean compartida, String tipo)
 	{
         log.info ("Adicionando Habitacion" );
@@ -174,9 +178,9 @@ public class AlohAndes {
 		Habitacion habitacion = pa.darHabitacionPorId(id);
 		return habitacion;
 	}
-	/**
+	/************************************
 	 * Métodos para manejar los Hostales
-	 */
+	 ***********************************/
 	public Hostal adicionarHostal (String nombre, String tipoOperador, int cantHabitaciones, String registroCamaraComercio, String registroSuperIntendencia, Time horaApertura, Time horaCierre)
 	{
         log.info ("Adicionando Hostal" );
@@ -204,9 +208,9 @@ public class AlohAndes {
 		Hostal hostal = pa.darHostalPorId(id);
 		return hostal;
 	}
-	/**
+	/***********************************
 	 * Métodos para manejar los Hoteles
-	 */
+	 **********************************/
 	public Hotel adicionarHotel (String nombre, String tipoOperador, int cantHabitaciones, String registroCamaraComercio, String registroSuperIntendencia)
 	{
         log.info ("Adicionando Hotel" );
@@ -234,13 +238,14 @@ public class AlohAndes {
 		Hotel hotel = pa.darHotelPorId(id);
 		return hotel;
 	}
-	/**
+	/**************************************
 	 * Métodos para manejar los Inmuebles
-	 */
-	public Inmueble adicionarInmueble (int costoBase, long idOperador)
+	 *************************************/
+
+	public Inmueble adicionarInmueble (int costoBase, long idOperador, String estado, String tipo)
 	{
         log.info ("Adicionando Inmueble" );
-        Inmueble inmueble = pa.adicionarInmueble(costoBase, idOperador);		
+        Inmueble inmueble = pa.adicionarInmueble(costoBase, idOperador, estado, tipo);		
         log.info ("Adicionando Inmueble: " + inmueble);
         return inmueble;
 	}
@@ -264,9 +269,19 @@ public class AlohAndes {
 		Inmueble inmueble = pa.darInmueblePorId(id);
 		return inmueble;
 	}
-	/**
+
+	public long rehabilitarInmueble(long id)
+	{
+		log.info("rehabilitando inmueble");
+		long resp= pa.rehabilitarInmueble(id);
+		log.info("Inmueble rehabilitado");
+		return resp;
+	}
+
+	/**************************************
 	 * Métodos para manejar los Operadores
-	 */
+	 *************************************/
+
 	public Operador adicionarOperador (String nombre, String tipoOperador)
 	{
         log.info ("Adicionando Operador" );
@@ -294,9 +309,10 @@ public class AlohAndes {
 		Operador operador = pa.darOperadorPorId(id);
 		return operador;
 	}
-	/**
+	/**********************************************
 	 * Métodos para manejar las Personas Naturales
-	 */
+	 *********************************************/
+
 	public PersonaNatural adicionarPersonaNatural (String nombre, String tipoOperador, String correo, String telefono)
 	{
         log.info ("Adicionando PersonaNatural" );
@@ -324,16 +340,31 @@ public class AlohAndes {
 		PersonaNatural personaNatural = pa.darPersonaNaturalPorId(id);
 		return personaNatural;
 	}
-	/**
+	/**********************************
 	 * Métodos para manejar las Reservas
-	 */
-	public Reserva adicionarReserva (String fechaInicio, String fechaFin, int costoTotal, long idCliente, long idInmueble)
+	 **********************************/
+	public Reserva adicionarReserva (Date fechaInicio, Date fechaFin, long idCliente, long idInmueble, String cancelado, long reservaColectiva)
 	{
         log.info ("Adicionando Reserva" );
-        Reserva reserva = pa.adicionarReserva(fechaInicio, fechaFin, costoTotal, idCliente, idInmueble);		
+        Reserva reserva = pa.adicionarReserva(fechaInicio, fechaFin, idCliente, idInmueble, cancelado, reservaColectiva);		
         log.info ("Adicionando Reserva: " + reserva);
         return reserva;
 	}
+	public List<VOInmueble> inmueblesDisponibles(String tipo, Date fechaInicio, Date fechaFin, String servicioDeseado)
+	{
+        log.info ("Inmuebles disponibles" );
+        List<VOInmueble> inmuebles = pa.inmueblesDisponibles(tipo, fechaInicio, fechaFin, servicioDeseado);		
+        log.info ("Inmuebles disponibles");
+        return inmuebles;
+	}
+	public ReservaColectiva adicionarReservaColectiva (long idCliente, String tipoEvento, Date fechaIni, Date fechaF, String tipoInmueble, Integer cantidad, List<VOInmueble> inmuebles)
+	{
+        log.info ("Adicionando Reserva Colectiva" );
+        ReservaColectiva reserva = pa.adicionarReservaColectiva(idCliente, tipoEvento, fechaIni, fechaF, tipoInmueble, cantidad, inmuebles);		
+        log.info ("Adicionando Reserva: " + reserva);
+        return reserva;
+	}
+
 	public long eliminarReservaPorId (long idReserva)
 	{
 		log.info ("Eliminando Reserva por id: " + idReserva);
@@ -354,9 +385,26 @@ public class AlohAndes {
 		Reserva reserva = pa.darReservaPorId(id);
 		return reserva;
 	}
-	/**
+
+	public long eliminarReservaColectiva (long id)
+	{
+		log.info("Eliminando reserva por id "+id);
+		long resp=pa.eliminarReservaColectivaPorId(id);
+		log.info("Eliminando reserva por id: "+resp+ " tuplas eliminadas");
+		return resp;
+	}
+
+	public long eliminarReservaPorReservaColectiva(long reservaColectiva)
+	{
+		log.info("Eliminando reservas de reserva colectiva: "+reservaColectiva);
+		long resp= pa.eliminarReservaPorReservaColectiva(reservaColectiva);
+		log.info("Eliminando reservas: "+resp+" tuplas eliminadas");
+		return resp;
+	}
+
+	/*************************************
 	 * Métodos para manejar los Servicios
-	 */
+	 ************************************/
 	public Servicio adicionarServicio (String nombre, String descripcion, int valorAdicional)
 	{
         log.info ("Adicionando Servicio" );
@@ -384,9 +432,9 @@ public class AlohAndes {
 		Servicio servicio = pa.darServicioPorId(id);
 		return servicio;
 	}
-	/**
+	/*********************************************
 	 * Métodos para manejar los Servicios Inmueble
-	 */
+	 ********************************************/
 	public ServicioInmueble adicionarServicioInmueble (long idServicio, long idInmueble, boolean incluido, int valorAdicional)
 	{
         log.info ("Adicionando ServicioInmueble" );
@@ -414,9 +462,10 @@ public class AlohAndes {
 		ServicioInmueble servicioInmueble = pa.darServicioInmueblePorId(idServicio, idInmueble);
 		return servicioInmueble;
 	}
-	/**
+	/********************************************
 	 * Métodos para manejar los Servicios Usados
-	 */
+	 ********************************************/
+
 	public ServicioUsado adicionarServicioUsado (long idServicio, long idReserva, long idInmueble)
 	{
         log.info ("Adicionando ServicioUsado" );
@@ -444,9 +493,10 @@ public class AlohAndes {
 		ServicioUsado servicioUsado = pa.darServiciosUsadosPorIdReserva(id);
 		return servicioUsado;
 	}
-	/**
+	/***************************************************
 	 * Métodos para manejar las Viviendas Universitarias
-	 */
+	 **************************************************/
+	
 	public ViviendaUniversitaria adicionarViviendaUniversitaria (String nombre, String tipoOperador, int cantHabitaciones)
 	{
         log.info ("Adicionando ViviendaUniversitaria" );

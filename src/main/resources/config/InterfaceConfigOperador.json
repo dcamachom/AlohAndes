@@ -1,4 +1,4 @@
- {
+{
 	"title": "Menu para el operador",
 	"frameH": 600,
 	"frameW": 800,
@@ -18,7 +18,15 @@
 		  		{
 		  			"label":"Retirar oferta de alojamiento",
 		  			"event": "retirarAlojamiento"
-		  		}
+		  		},
+				{
+					"label": "Deshabilitar oferta de alojamiento",
+					"event": "deshabilitarOfertaDeAlojamiento"
+				},
+				{
+					"label":"Rehabilitar oferta de alojamiento",
+					"event":"rehabilitarOfertaDeAlojamiento"
+				}
 		  	]
 		}
 	]

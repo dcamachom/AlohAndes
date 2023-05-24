@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.lang.reflect.Method;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.JFrame;
@@ -14,6 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -200,12 +203,14 @@ public class InterfazCliente extends JFrame implements ActionListener{
 	 public void registroReserva() {
 		try {
 			 
-			String fechaInicio= JOptionPane.showInputDialog(this, "Fecha inicial de la reserva (dd-mm-yyyy)?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
-			String fechaFin=JOptionPane.showInputDialog(this, "Fecha final de la reserva (dd-mm-yyyy)", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
+			String fechaInicio= JOptionPane.showInputDialog(this, "Fecha inicial de la reserva (dd/mm/yyyy)?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
+			String fechaFin=JOptionPane.showInputDialog(this, "Fecha final de la reserva (dd/mm/yyyy)", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
 			String idCliente=JOptionPane.showInputDialog(this, "Cliente que desea la reserva?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
 			String idInmueble=JOptionPane.showInputDialog(this, "En qué inmueble desea la reserva?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
+			Date fInicial=new SimpleDateFormat("dd/MM/yyyy").parse(fechaInicio);
+			Date fFinal=new SimpleDateFormat("dd/MM/yyyy").parse(fechaFin);
 			if (fechaInicio!=null && fechaFin!=null && idCliente!=null && idInmueble!=null) {
-				VOReserva tb= alohAndes.adicionarReserva(fechaInicio, fechaFin, 0, Long.parseLong(idCliente), Long.parseLong(idInmueble));
+				VOReserva tb= alohAndes.adicionarReserva(fInicial, fFinal, Long.parseLong(idCliente), Long.parseLong(idInmueble), "False", 0);
 				if (tb == null)
 				   {
 					   throw new Exception ("No se agregó la reserva para el cliente:" +idCliente+" en el inmueble: "+idInmueble );
@@ -220,6 +225,66 @@ public class InterfazCliente extends JFrame implements ActionListener{
 		catch (Exception e) {
 		   String resultado = generarMensajeError(e);
 		   panelDatos.actualizarInterfaz(resultado);
+		}
+	 }
+
+	 public void registroReservaColectiva()
+	 {
+		try {
+			String idCliente=JOptionPane.showInputDialog(this, "Cliente que desea la reserva colectiva?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
+			String tipoEvento=JOptionPane.showInputDialog(this, "Tipo de evento?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
+			String fechaInicio= JOptionPane.showInputDialog(this, "Fecha inicial de la reserva (dd/mm/yyyy)?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
+			String fechaFin=JOptionPane.showInputDialog(this, "Fecha final de la reserva (dd/mm/yyyy)", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
+			String tipoInmueble= JOptionPane.showInputDialog(this, "Tipo de inmueble (Suite, Semisuite, Estandar, Casa o Apartamento)?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
+			String servicioDeseado= JOptionPane.showInputDialog(this, "Servicio deseado?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
+			String cantidad= JOptionPane.showInputDialog(this, "Cantidad de personas?", "Registro reserva colectiva colectiva", JOptionPane.QUESTION_MESSAGE);
+			Integer cant=Integer.parseInt(cantidad);
+			Date fInicial=new SimpleDateFormat("dd/MM/yyyy").parse(fechaInicio);
+			Date fFinal=new SimpleDateFormat("dd/MM/yyyy").parse(fechaFin);
+			
+			if (idCliente!=null && fechaInicio!=null && fechaFin!=null && cant!=null && tipoInmueble!=null) {
+				List<VOInmueble> inmuebles= alohAndes.inmueblesDisponibles(tipoInmueble, fInicial, fFinal, servicioDeseado);
+				if(inmuebles.size()<cant)
+				{
+					throw new Exception("No se puede realizar la reserva colectiva, inmuebles insuficientes.");
+				}
+				VOReservaColectiva tb= alohAndes.adicionarReservaColectiva(Long.parseLong(idCliente), tipoEvento, fInicial, fFinal, tipoInmueble, Integer.parseInt(cantidad), inmuebles);
+				if (tb == null)
+				   {
+					   throw new Exception ("No se agregó la reserva colectiva para el cliente:" +idCliente);
+			   }else {
+				   String resultado = "En registroReservaColectiva\n\n";
+				   resultado += "Reserva colectiva adicionada exitosamente: " + tb;
+				   resultado += "\n Operación terminada";
+				   panelDatos.actualizarInterfaz(resultado);
+			   }
+			}
+
+		}
+		catch(Exception e) {
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+		
+	 }
+
+	 public void cancelarReservaColectiva()
+	 {
+		try{
+
+			String idReservaColectiva= JOptionPane.showInputDialog(this,"Reserva colectiva a cancelar");
+			if (idReservaColectiva!=null){
+				long resp1= alohAndes.eliminarReservaPorReservaColectiva(Long.parseLong(idReservaColectiva));
+				long resp2= alohAndes.eliminarReservaPorReservaColectiva(Long.parseLong(idReservaColectiva));
+				String resultado = "En cancelarReserva \n\n";
+	     		resultado += "Reserva "+idReservaColectiva+" eliminada exitosamente";
+	 			resultado += "\n Operación terminada";
+	 			panelDatos.actualizarInterfaz(resultado);
+			}
+		}
+		catch(Exception e) {
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
 		}
 	 }
 	 

@@ -2,23 +2,42 @@
 	"title": "Menu para el cliente",
 	"frameH": 600,
 	"frameW": 800,
+	"bannerPath": "./src/config/logo.png",
 	"menuBar":
 	[
-		{ "menuTitle":"Requerimientos Funcionales",
+		{ "menuTitle":"Cliente",
 		  "options":
 		  	[
 		  		{
 		  			"label":"Registro Cliente",
 		  			"event":"registroCliente"
-		  		},
-		  		{
-		  			"label":"Realizar reserva",
-		  			"event": "registroReserva"
-		  		},
-		  		{
-		  			"label":"Cancelar reserva",
-		  			"event": "cancelarReserva"
 		  		}
+		  	]
+		},
+		{ "menuTitle":"Reserva Individual",
+		  "options":
+		  	[
+				{
+					"label":"Realizar reserva",
+					"event": "registroReserva"
+				},
+				{
+					"label":"Cancelar reserva",
+					"event": "cancelarReserva"
+				}
+		  	]
+		},
+		{ "menuTitle":"Reserva Colectiva",
+		  "options":
+		  	[
+				{
+					"label":"Realizar reserva",
+					"event": "registroReservaColectiva"
+				},
+				{
+					"label":"Cancelar reserva",
+					"event": "cancelarReservaColectiva"
+				}
 		  	]
 		}
 	]

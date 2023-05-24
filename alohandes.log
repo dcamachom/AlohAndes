@@ -4,17 +4,36 @@
 17:49:19,884 (main) INFO  [uniandes.isis2304.alohandes.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Interfaz
 17:49:19,884 (main) INFO  [uniandes.isis2304.alohandes.interfazApp.InterfazAlohAndesApp] - Se aplica configuración indicada en el archivo de configuración
 17:49:19,896 (main) INFO  [uniandes.isis2304.alohandes.interfazApp.InterfazAlohAndesApp] - Se encontró un archivo de configuración válido: Tablas BD
-16:56:26,625 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontr� un archivo de configuraci�n v�lido: Interfaz
-16:56:26,625 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuraci�n indicada en el archivo de configuraci�n
-16:56:26,672 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontr� un archivo de configuraci�n v�lido: Tablas BD
-16:59:22,846 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontr� un archivo de configuraci�n v�lido: Interfaz
-16:59:22,846 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuraci�n indicada en el archivo de configuraci�n
-16:59:22,877 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontr� un archivo de configuraci�n v�lido: Tablas BD
-17:03:32,236 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontr� un archivo de configuraci�n v�lido: Interfaz
-17:03:32,236 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuraci�n indicada en el archivo de configuraci�n
-17:03:32,283 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontr� un archivo de configuraci�n v�lido: Tablas BD
+16:56:26,625 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontro un archivo de configuracion valido: Interfaz
+16:56:26,625 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuracion indicada en el archivo de configuracion
+16:56:26,672 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontro un archivo de configuracion valido: Tablas BD
+16:59:22,846 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontro un archivo de configuracion valido: Interfaz
+16:59:22,846 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuracion indicada en el archivo de configuraci�n
+16:59:22,877 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontro un archivo de configuraci�n v�lido: Tablas BD
+17:03:32,236 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontr� un archivo de configuraci�n v�lido: Interfaz
+17:03:32,236 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuraci�n indicada en el archivo de configuraci�n
+17:03:32,283 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontr� un archivo de configuraci�n v�lido: Tablas BD
 17:04:05,316 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Cliente
 17:04:05,724 (AWT-EventQueue-0) ERROR [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO CLIENTE(id, nombre, correo, telefono, tipoMiembro) values (?, ?, ?, ?, ?)".
-ORA-00001: restricci�n �nica (ISIS2304C05202310.CLIENTE_PK) violada
+ORA-00001: restricci�n �nica (ISIS2304C05202310.CLIENTE_PK) violada
 
 17:04:05,748 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Cliente: null
+17:17:01,642 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+17:17:01,642 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+17:17:01,658 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+17:17:59,011 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+17:17:59,012 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+17:17:59,025 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+18:12:28,555 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+18:12:28,556 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+18:12:28,565 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+18:13:07,131 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Inmuebles disponibles
+18:14:38,722 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - NO se encontró un archivo de configuración válido
+18:14:41,556 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración por defecto
+18:14:41,562 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - NO se encontró un archivo de configuración válido
+18:14:48,226 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - NO se encontró un archivo de configuración válido
+18:14:49,966 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración por defecto
+18:14:49,971 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - NO se encontró un archivo de configuración válido
+18:15:47,053 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+18:15:47,053 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+18:15:47,064 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD

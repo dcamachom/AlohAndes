@@ -11,6 +11,8 @@ public class Inmueble implements VOInmueble{
 	private long id;
 	private int costoBase;
 	private long idOperador;
+	private String estado;
+	private String tipo;
 	private List<Object []> serviciosIncluidos;
 	private List<Object[]> serviciosNoIncluidos;
 	private List<Object[]> reservas;
@@ -26,6 +28,8 @@ public class Inmueble implements VOInmueble{
 		this.id=0;
 		this.costoBase=0;
 		this.idOperador=0;
+		this.estado=null;
+		this.tipo=null;
 		serviciosIncluidos= new LinkedList<Object[]>();
 		serviciosNoIncluidos= new LinkedList<Object[]>();
 		reservas= new LinkedList<Object[]>();
@@ -37,10 +41,12 @@ public class Inmueble implements VOInmueble{
 	 * @param costoBase
 	 * @param disponible
 	 */
-	public Inmueble(long id, int costoBase, long idOperador) {
+	public Inmueble(long id, int costoBase, long idOperador, String estado, String tipo) {
 		this.id=id;
 		this.costoBase=costoBase;
 		this.idOperador=idOperador;
+		this.estado=estado;
+		this.tipo=tipo;
 		serviciosIncluidos= new LinkedList<Object[]>();
 		serviciosNoIncluidos= new LinkedList<Object[]>();
 		reservas= new LinkedList<Object[]>();
@@ -50,6 +56,14 @@ public class Inmueble implements VOInmueble{
 	public long getId() {
 		// TODO Auto-generated method stub
 		return id;
+	}
+
+	public String getEstado(){
+		return estado;
+	}
+
+	public String getTipo(){
+		return tipo;
 	}
 	
 	public void setId(long id) {
@@ -102,5 +116,4 @@ public class Inmueble implements VOInmueble{
 	{
 		return "Inmueble [id=" + id + ", Costo base="+ costoBase + "]";
 	}
-
 }

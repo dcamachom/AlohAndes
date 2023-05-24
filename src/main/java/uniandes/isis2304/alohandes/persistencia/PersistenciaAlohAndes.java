@@ -1,6 +1,8 @@
 package uniandes.isis2304.alohandes.persistencia;
 
+import java.util.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,9 +26,11 @@ import uniandes.isis2304.alohandes.negocio.Inmueble;
 import uniandes.isis2304.alohandes.negocio.Operador;
 import uniandes.isis2304.alohandes.negocio.PersonaNatural;
 import uniandes.isis2304.alohandes.negocio.Reserva;
+import uniandes.isis2304.alohandes.negocio.ReservaColectiva;
 import uniandes.isis2304.alohandes.negocio.Servicio;
 import uniandes.isis2304.alohandes.negocio.ServicioInmueble;
 import uniandes.isis2304.alohandes.negocio.ServicioUsado;
+import uniandes.isis2304.alohandes.negocio.VOInmueble;
 import uniandes.isis2304.alohandes.negocio.ViviendaUniversitaria;
 
 public class PersistenciaAlohAndes {
@@ -60,6 +64,8 @@ public class PersistenciaAlohAndes {
 	private SQLOperador sqlOperador;
 	
 	private SQLPersonaNatural sqlPersonaNatural;
+
+    private SQLReservaColectiva sqlReservaColectiva;
 	
 	private SQLReserva sqlReserva;
 	
@@ -91,6 +97,7 @@ public class PersistenciaAlohAndes {
 		tablas.add("INMUEBLE");
 		tablas.add("OPERADOR");
 		tablas.add("PERSONANATURAL");
+        tablas.add("RESERVACOLECTIVA");
 		tablas.add("RESERVA");
 		tablas.add("SERVICIO");
 		tablas.add("SERVICIOINMUEBLE");
@@ -154,6 +161,7 @@ public class PersistenciaAlohAndes {
 		sqlInmueble= new SQLInmueble (this);
 		sqlOperador= new SQLOperador (this);
 		sqlPersonaNatural= new SQLPersonaNatural (this);
+        sqlReservaColectiva= new SQLReservaColectiva(this);
 		sqlReserva= new SQLReserva (this);
 		sqlServicio= new SQLServicio(this);
 		sqlServicioUsado= new SQLServicioUsado (this);
@@ -200,23 +208,27 @@ public class PersistenciaAlohAndes {
 	public String darTablaPersonaNatural() {
 		return tablas.get(9);
 	}
-	
-	public String darTablaReserva() {
+
+    public String darTablaReservaColectiva() {
 		return tablas.get(10);
 	}
 	
-	public String darTablaServicio() {
+	public String darTablaReserva() {
 		return tablas.get(11);
 	}
-	public String darTablaServicioInmueble() {
+	
+	public String darTablaServicio() {
 		return tablas.get(12);
 	}
-	public String darTablaServicioUsado() {
+	public String darTablaServicioInmueble() {
 		return tablas.get(13);
+	}
+	public String darTablaServicioUsado() {
+		return tablas.get(14);
 	}
 	
 	public String darTablaViviendaUniversitaria() {
-		return tablas.get(14);
+		return tablas.get(15);
 	}
 	
 	private long nextval ()
@@ -244,7 +256,7 @@ public class PersistenciaAlohAndes {
 	 * ********************************************************
 	 */
 	
-	public Apartamento adicionarApartamento (int costoBase, long idOperador, boolean amoblado, int cantHabitaciones) {
+     public Apartamento adicionarApartamento (int costoBase, long idOperador, boolean amoblado, int cantHabitaciones, String estado, String tipo) {
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
@@ -256,7 +268,7 @@ public class PersistenciaAlohAndes {
             
             log.trace ("Inserción del apartamento: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Apartamento (id, costoBase, idOperador, amoblado, cantHabitaciones);
+            return new Apartamento (id, costoBase, idOperador, amoblado, cantHabitaciones, estado, tipo);
         }
         catch (Exception e)
         {
@@ -314,35 +326,35 @@ public class PersistenciaAlohAndes {
 	 * Métodos para manejar las CASAS
 	 *********************************/
 	
-	public Casa adicionarCasa(int costoBase, long idOperador, int cantHabitaciones, String seguro) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();            
-            long id = nextval ();
-            long tuplasInsertadas = sqlCasa.adicionarCasa(pm, id, cantHabitaciones, seguro);
-            tx.commit();
-            
-            log.trace ("Inserción casa: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            return new Casa (id, costoBase, idOperador, cantHabitaciones, seguro);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
+     public Casa adicionarCasa(int costoBase, long idOperador, int cantHabitaciones, String seguro) 
+     {
+         PersistenceManager pm = pmf.getPersistenceManager();
+         Transaction tx=pm.currentTransaction();
+         try
+         {
+             tx.begin();            
+             long id = nextval ();
+             long tuplasInsertadas = sqlCasa.adicionarCasa(pm, id, cantHabitaciones, seguro);
+             tx.commit();
+             
+             log.trace ("Inserción casa: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+             return new Casa (id, costoBase, idOperador, cantHabitaciones, seguro, "Habilitada", "Casa");
+         }
+         catch (Exception e)
+         {
+ //        	e.printStackTrace();
+             log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+             return null;
+         }
+         finally
+         {
+             if (tx.isActive())
+             {
+                 tx.rollback();
+             }
+             pm.close();
+         }
+     }
 	
 	public long eliminarCasaPorId (long id) 
 	{
@@ -489,36 +501,36 @@ public class PersistenciaAlohAndes {
 	 * Método para las HABITACIONES
 	 ******************************/
 
-	public Habitacion adicionarHabitacion(int costoBase, long idOperador, int capacidad, boolean compartida, String tipo)
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long id = nextval ();
-            long tuplasInsertadas = sqlHabitacion.adicionarHabitacion(pm, id, capacidad, compartida,tipo);
-            tx.commit();
-            
-            log.trace ("Inserción de la habitacion: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new Habitacion (id, costoBase, idOperador, capacidad, compartida,tipo);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
+     public Habitacion adicionarHabitacion(int costoBase, long idOperador, int capacidad, boolean compartida, String tipo)
+     {
+         PersistenceManager pm = pmf.getPersistenceManager();
+         Transaction tx=pm.currentTransaction();
+         try
+         {
+             tx.begin();
+             long id = nextval ();
+             long tuplasInsertadas = sqlHabitacion.adicionarHabitacion(pm, id, capacidad, compartida,tipo);
+             tx.commit();
+             
+             log.trace ("Inserción de la habitacion: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+             
+             return new Habitacion (id, costoBase, idOperador, capacidad, compartida,tipo,"Habilitada");
+         }
+         catch (Exception e)
+         {
+ //        	e.printStackTrace();
+             log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+             return null;
+         }
+         finally
+         {
+             if (tx.isActive())
+             {
+                 tx.rollback();
+             }
+             pm.close();
+         }
+     }
 	
 	public long eliminarHabitacionPorId (long id) 
 	{
@@ -705,36 +717,36 @@ public class PersistenciaAlohAndes {
 	 * Métodos para los inmuebles
 	 *****************************/
 	
-	public Inmueble adicionarInmueble(int costoBase, long idOperador)
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long id = nextval ();
-            long tuplasInsertadas = sqlInmueble.adicionarInmueble(pm, id, costoBase, idOperador);
-            tx.commit();
-            
-            log.trace ("Inserción del Inmueble: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new Inmueble (id, costoBase, idOperador);
-        }
-        catch (Exception e)
-        {
-//        	e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
+     public Inmueble adicionarInmueble(int costoBase, long idOperador, String estado, String tipo)
+     {
+         PersistenceManager pm = pmf.getPersistenceManager();
+         Transaction tx=pm.currentTransaction();
+         try
+         {
+             tx.begin();
+             long id = nextval ();
+             long tuplasInsertadas = sqlInmueble.adicionarInmueble(pm, id, costoBase, idOperador, estado, tipo);
+             tx.commit();
+             
+             log.trace ("Inserción del Inmueble: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+             
+             return new Inmueble (id, costoBase, idOperador, estado, tipo);
+         }
+         catch (Exception e)
+         {
+ //        	e.printStackTrace();
+             log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+             return null;
+         }
+         finally
+         {
+             if (tx.isActive())
+             {
+                 tx.rollback();
+             }
+             pm.close();
+         }
+     }
 	
 	public long eliminarInmueblePorId (long id) 
 	{
@@ -772,6 +784,33 @@ public class PersistenciaAlohAndes {
 	{
 		return sqlInmueble.darInmueblePorId (pmf.getPersistenceManager(), id);
 	}
+
+    public long rehabilitarInmueble(long id)
+    {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp= sqlInmueble.rehabilitarInmueble(pm, id);
+            tx.commit();
+            return resp;
+        }
+        catch (Exception e)
+        {
+        	//e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+            return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+    }
 	
 	/* **************************
 	 * Métodos de los OPERADORES
@@ -921,46 +960,162 @@ public class PersistenciaAlohAndes {
 	 * Método para las RESERVAS
 	 ****************************/
 	
-	public Reserva adicionarReserva(String fechaInicio, String fechaFin, int costoTotal, long idCliente, long idInmueble)
+     public Reserva adicionarReserva(Date fechaInicio, Date fechaFin, long idCliente, long idInmueble, String cancelado, long reservaColectiva)
+     {
+         PersistenceManager pm = pmf.getPersistenceManager();
+         Transaction tx=pm.currentTransaction();
+         try
+         {
+             tx.begin();
+             long id = nextval ();
+             long tuplasInsertadas = sqlReserva.adicionarReserva(pm, id, idCliente, idInmueble, fechaInicio, fechaFin, cancelado, reservaColectiva);
+             System.out.println("Reserva: "+id);
+             tx.commit();
+             
+             log.trace ("Inserción del reserva: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+             
+             return new Reserva (id,fechaInicio, fechaFin, idCliente, idInmueble, cancelado, reservaColectiva);
+         }
+         catch (Exception e)
+         {
+             //e.printStackTrace();
+             log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+             return null;
+         }
+         finally
+         {
+             if (tx.isActive())
+             {
+                 tx.rollback();
+             }
+             pm.close();
+         }
+     }
+ 
+     public List<VOInmueble> inmueblesDisponibles(String tipo, Date fechaInicio, Date fechaFin, String servicioDeseado)
+     {
+         List<Inmueble> lista=sqlInmueble.darInmueblesDisponibles(pmf.getPersistenceManager(), tipo, fechaInicio, fechaFin, servicioDeseado);
+         List<VOInmueble> listaVo= new ArrayList<>();
+         for (int i=0;i<lista.size();i++)
+         {
+             VOInmueble vo=lista.get(i);
+             listaVo.add(vo);
+         }
+         return listaVo ;
+     }	
+     public long eliminarReservaPorId (long id) 
+     {
+         PersistenceManager pm = pmf.getPersistenceManager();
+         Transaction tx=pm.currentTransaction();
+         try
+         {
+             tx.begin();
+             long resp = sqlReserva.eliminarReservaPorId(pm, id);
+             tx.commit();
+             return resp;
+         }
+         catch (Exception e)
+         {
+ //        	e.printStackTrace();
+             log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+             return -1;
+         }
+         finally
+         {
+             if (tx.isActive())
+             {
+                 tx.rollback();
+             }
+             pm.close();
+         }
+     }
+ 
+     public long eliminarReservaPorReservaColectiva (long id)
+     {
+         PersistenceManager pm = pmf.getPersistenceManager();
+         Transaction tx=pm.currentTransaction();
+         try
+         {
+             tx.begin();
+             long resp = sqlReserva.eliminarReservaPorReservaColectiva(pm, id);
+             tx.commit();
+             return resp;
+         }
+         catch (Exception e)
+         {
+ //        	e.printStackTrace();
+             log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+             return -1;
+         }
+         finally
+         {
+             if (tx.isActive())
+             {
+                 tx.rollback();
+             }
+             pm.close();
+         }
+     }
+     
+     public List<Reserva> darReservas ()
+     {
+         return sqlReserva.darReservas (pmf.getPersistenceManager());
+     }
+     
+     public Reserva darReservaPorId (long id)
+     {
+         return sqlReserva.darReservaPorId (pmf.getPersistenceManager(), id);
+     }
+
+    /**************************************
+     * Método para las RESERVAS COLECTIVAS
+     *************************************/
+
+     public ReservaColectiva adicionarReservaColectiva(long idCliente, String tipoEvento, Date fechaIni, Date fechaF, String tipoInmueble, Integer cantidad, List<VOInmueble> inmuebles)
+     {
+         PersistenceManager pm = pmf.getPersistenceManager();
+         Transaction tx=pm.currentTransaction();
+         try
+         {
+             tx.begin();
+             long id = nextval ();
+             long tuplasInsertadas = sqlReservaColectiva.adicionarReservaColectiva(pm, id, tipoInmueble, tipoEvento,cantidad);
+             for (int i=0; i<cantidad;i++)
+             {
+                long id2 = nextval ();
+                sqlReserva.adicionarReserva(pm, id2, idCliente, inmuebles.get(i).getId(), fechaIni, fechaF, "False", id);
+             }
+             System.out.println("Reserva Colectiva: "+id);
+             tx.commit();
+             
+             log.trace ("Inserción de reserva colectiva: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
+             
+             return new ReservaColectiva (id,tipoInmueble, tipoEvento,cantidad);
+         }
+         catch (Exception e)
+         {
+             //e.printStackTrace();
+             log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+             return null;
+         }
+         finally
+         {
+             if (tx.isActive())
+             {
+                 tx.rollback();
+             }
+             pm.close();
+         }
+     }
+
+     public long eliminarReservaColectivaPorId (long id) 
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
         Transaction tx=pm.currentTransaction();
         try
         {
             tx.begin();
-            long id = nextval ();
-            long tuplasInsertadas = sqlReserva.adicionarReserva(pm, id, fechaInicio, fechaFin, costoTotal, idCliente, idInmueble);
-            System.out.println("Reserva: "+id);
-            tx.commit();
-            
-            log.trace ("Inserción del reserva: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-            
-            return new Reserva (id,fechaInicio, fechaFin, costoTotal, idCliente, idInmueble);
-        }
-        catch (Exception e)
-        {
-        	//e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-        	return null;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-	}
-	
-	public long eliminarReservaPorId (long id) 
-	{
-		PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long resp = sqlReserva.eliminarReservaPorId(pm, id);
+            long resp = sqlReservaColectiva.eliminarReservaColectivaPorId(pm, id);
             tx.commit();
             return resp;
         }
@@ -979,15 +1134,15 @@ public class PersistenciaAlohAndes {
             pm.close();
         }
 	}
-	
-	public List<Reserva> darReservas ()
+
+    public List<ReservaColectiva> darReservasColectivas ()
 	{
-		return sqlReserva.darReservas (pmf.getPersistenceManager());
+		return sqlReservaColectiva.darReservasColectivas (pmf.getPersistenceManager());
 	}
 	
-	public Reserva darReservaPorId (long id)
+	public ReservaColectiva darReservaColectivaPorId (long id)
 	{
-		return sqlReserva.darReservaPorId (pmf.getPersistenceManager(), id);
+		return sqlReservaColectiva.darReservaColectivaPorId (pmf.getPersistenceManager(), id);
 	}
 	
 	/* *************************
@@ -1342,9 +1497,5 @@ public class PersistenciaAlohAndes {
         }
 		
 	}
-
-    public String darTablaReservaColectiva() {
-        return null;
-    }
 	
 }
