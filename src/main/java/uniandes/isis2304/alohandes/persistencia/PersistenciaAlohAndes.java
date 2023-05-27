@@ -1,6 +1,6 @@
 package uniandes.isis2304.alohandes.persistencia;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -960,7 +960,7 @@ public class PersistenciaAlohAndes {
 	 * Método para las RESERVAS
 	 ****************************/
 	
-     public Reserva adicionarReserva(Date fechaInicio, Date fechaFin, long idCliente, long idInmueble, String cancelado, long reservaColectiva)
+     public Reserva adicionarReserva(Timestamp fechaInicio, Timestamp fechaFin, long idCliente, long idInmueble, String cancelado, long reservaColectiva)
      {
          PersistenceManager pm = pmf.getPersistenceManager();
          Transaction tx=pm.currentTransaction();
@@ -992,7 +992,7 @@ public class PersistenciaAlohAndes {
          }
      }
  
-     public List<Inmueble> inmueblesDisponibles(String tipo, Date fechaInicio, Date fechaFin, String servicioDeseado)
+     public List<Inmueble> inmueblesDisponibles(String tipo, Timestamp fechaInicio, Timestamp fechaFin, String servicioDeseado)
      {
          List<Inmueble> lista=sqlInmueble.darInmueblesDisponibles(pmf.getPersistenceManager(), tipo, fechaInicio, fechaFin, servicioDeseado);
          List<Inmueble> listaVo= new ArrayList<>();
@@ -1071,7 +1071,7 @@ public class PersistenciaAlohAndes {
      * Método para las RESERVAS COLECTIVAS
      *************************************/
 
-     public ReservaColectiva adicionarReservaColectiva(long idCliente, String tipoEvento, Date fechaIni, Date fechaF, String tipoInmueble, Integer cantidad, List<VOInmueble> inmuebles)
+     public ReservaColectiva adicionarReservaColectiva(long idCliente, String tipoEvento, Timestamp fechaIni, Timestamp fechaF, String tipoInmueble, Integer cantidad, List<VOInmueble> inmuebles)
      {
          PersistenceManager pm = pmf.getPersistenceManager();
          Transaction tx=pm.currentTransaction();
@@ -1079,13 +1079,12 @@ public class PersistenciaAlohAndes {
          {
              tx.begin();
              long id = nextval ();
-             long tuplasInsertadas = sqlReservaColectiva.adicionarReservaColectiva(pm, id, tipoInmueble, tipoEvento,cantidad);
+             long tuplasInsertadas = sqlReservaColectiva.adicionarReservaColectiva(pm, id, tipoEvento, tipoInmueble,cantidad);
              for (int i=0; i<cantidad;i++)
              {
                 long id2 = nextval ();
                 sqlReserva.adicionarReserva(pm, id2, idCliente, inmuebles.get(i).getId(), fechaIni, fechaF, "False", id);
              }
-             System.out.println("Reserva Colectiva: "+id);
              tx.commit();
              
              log.trace ("Inserción de reserva colectiva: " + id + ": " + tuplasInsertadas + " tuplas insertadas");

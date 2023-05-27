@@ -6,8 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.lang.reflect.Method;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.ImageIcon;
@@ -230,10 +229,8 @@ public class InterfazCliente extends JFrame implements ActionListener{
 			String fechaFin=JOptionPane.showInputDialog(this, "Fecha final de la reserva (dd/mm/yyyy)", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
 			String idCliente=JOptionPane.showInputDialog(this, "Cliente que desea la reserva?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
 			String idInmueble=JOptionPane.showInputDialog(this, "En qué inmueble desea la reserva?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
-			Date fInicial=new SimpleDateFormat("dd/MM/yyyy").parse(fechaInicio);
-			Date fFinal=new SimpleDateFormat("dd/MM/yyyy").parse(fechaFin);
 			if (fechaInicio!=null && fechaFin!=null && idCliente!=null && idInmueble!=null) {
-				VOReserva tb= alohAndes.adicionarReserva(fInicial, fFinal, Long.parseLong(idCliente), Long.parseLong(idInmueble), "False", 0);
+				VOReserva tb= alohAndes.adicionarReserva(Timestamp.valueOf(fechaInicio), Timestamp.valueOf(fechaFin), Long.parseLong(idCliente), Long.parseLong(idInmueble), "False", 0);
 				if (tb == null)
 				   {
 					   throw new Exception ("No se agregó la reserva para el cliente:" +idCliente+" en el inmueble: "+idInmueble );
@@ -262,16 +259,14 @@ public class InterfazCliente extends JFrame implements ActionListener{
 			String servicioDeseado= JOptionPane.showInputDialog(this, "Servicio deseado?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
 			String cantidad= JOptionPane.showInputDialog(this, "Cantidad de personas?", "Registro reserva colectiva colectiva", JOptionPane.QUESTION_MESSAGE);
 			Integer cant=Integer.parseInt(cantidad);
-			Date fInicial=new SimpleDateFormat("dd/MM/yyyy").parse(fechaInicio);
-			Date fFinal=new SimpleDateFormat("dd/MM/yyyy").parse(fechaFin);
 			
 			if (idCliente!=null && fechaInicio!=null && fechaFin!=null && cant!=null && tipoInmueble!=null) {
-				List<VOInmueble> inmuebles= alohAndes.inmueblesDisponibles(tipoInmueble, fInicial, fFinal, servicioDeseado);
+				List<VOInmueble> inmuebles= alohAndes.inmueblesDisponibles(tipoInmueble, Timestamp.valueOf(fechaInicio+=" 00:00:00.00"), Timestamp.valueOf(fechaFin+=" 00:00:00.00"), servicioDeseado);
 				if(inmuebles.size()<cant)
 				{
 					throw new Exception("No se puede realizar la reserva colectiva, inmuebles insuficientes.");
 				}
-				VOReservaColectiva tb= alohAndes.adicionarReservaColectiva(Long.parseLong(idCliente), tipoEvento, fInicial, fFinal, tipoInmueble, Integer.parseInt(cantidad), inmuebles);
+				VOReservaColectiva tb= alohAndes.adicionarReservaColectiva(Long.parseLong(idCliente), tipoEvento, Timestamp.valueOf(fechaInicio), Timestamp.valueOf(fechaFin), tipoInmueble, Integer.parseInt(cantidad), inmuebles);
 				if (tb == null)
 				   {
 					   throw new Exception ("No se agregó la reserva colectiva para el cliente:" +idCliente);

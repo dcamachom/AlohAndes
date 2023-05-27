@@ -1,6 +1,6 @@
 package uniandes.isis2304.alohandes.persistencia;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -28,8 +28,8 @@ public class SQLReserva {
 		this.pa=pa;
 	}
 	
-	public long adicionarReserva(PersistenceManager pm, long id, long cliente, long inmueble, Date fechaInicio, Date fechaFin, String cancelado, long reservaColectiva) {
-		Query q = pm.newQuery(SQL, "INSERT INTO " + pa.darTablaReserva () + "(id, , cliente, inmueble, fechaInicio, fechaFin, cancelado, reservaColectiva) values (?, ?, ?, ?, ?, ?, ?)");
+	public long adicionarReserva(PersistenceManager pm, long id, long cliente, long inmueble, Timestamp fechaInicio, Timestamp fechaFin, String cancelado, long reservaColectiva) {
+		Query q = pm.newQuery(SQL, "INSERT INTO " + pa.darTablaReserva () + "(id, cliente, inmueble, fechaInicio, fechaFin, cancelado, reservaColectiva) values (?, ?, ?, ?, ?, ?, ?)");
         q.setParameters(id, cliente, inmueble, fechaInicio, fechaFin, cancelado, reservaColectiva);
         return (long) q.executeUnique();
 	}
@@ -43,7 +43,7 @@ public class SQLReserva {
 
 	public long eliminarReservaPorReservaColectiva (PersistenceManager pm, long reservaColectiva)
 	{
-		Query q= pm.newQuery(SQL, "UPDATE" + pa.darTablaReserva() + "SET CANCELADO='True' WHERE RESERVACOLECTIVA=?");
+		Query q= pm.newQuery(SQL, "UPTimestamp" + pa.darTablaReserva() + "SET CANCELADO='True' WHERE RESERVACOLECTIVA=?");
 		q.setParameters(reservaColectiva);
 		return (long) q.executeUnique();
 	}

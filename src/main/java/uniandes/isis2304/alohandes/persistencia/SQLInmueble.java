@@ -1,7 +1,6 @@
 package uniandes.isis2304.alohandes.persistencia;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -57,23 +56,20 @@ public class SQLInmueble {
 		return (List<Inmueble>) q.executeList();
 	}
 
-	public List<Inmueble> darInmueblesDisponibles (PersistenceManager pm, String tipo, Date fechaInicio, Date fechaFin, String servicioDeseado)
+	public List<Inmueble> darInmueblesDisponibles (PersistenceManager pm, String tipo, Timestamp fechaInicio, Timestamp fechaFin, String servicioDeseado)
 	{
-		SimpleDateFormat formato= new SimpleDateFormat("dd/MM/yyyy");
-		String fInicial=formato.format(fechaInicio);
-		String fFinal=formato.format(fechaFin);
 		String sql= "SELECT I.* FROM (SELECT * FROM "
 		+pa.darTablaServicioInmueble()+ " LEFT OUTER JOIN "+pa.darTablaServicio() +" ON SERVICIO=SERVICIO.ID WHERE LOWER(NOMBRE)=LOWER(?)) S INNER JOIN (SELECT INMUEBLE.* FROM "+pa.darTablaInmueble() +" LEFT OUTER JOIN "+ pa.darTablaReserva() +" ON RESERVA.INMUEBLE=INMUEBLE.ID WHERE (FECHAINICIO>? OR FECHAFIN<? OR FECHAINICIO IS NULL) AND TIPO =? AND ESTADO='Habilitada')I ON S.INMUEBLE=I.ID ORDER BY S.INMUEBLE";
 		Query q = pm.newQuery(SQL, sql);
 		q.setResultClass(Inmueble.class);
-		q.setParameters(servicioDeseado, fInicial, fFinal, tipo);
+		q.setParameters(servicioDeseado, fechaInicio, fechaFin, tipo);
 		return q.executeList();
 	}
 
 
 	public long rehabilitarInmueble (PersistenceManager pm, long id)
 	{
-		Query q= pm.newQuery(SQL, "UPDATE "+pa.darTablaInmueble()+" SET ESTADO='Habilitada' WHERE ID=?");
+		Query q= pm.newQuery(SQL, "UPTimestamp "+pa.darTablaInmueble()+" SET ESTADO='Habilitada' WHERE ID=?");
 		q.setParameters(id);
 		return (long) q.executeUnique();  
 	}

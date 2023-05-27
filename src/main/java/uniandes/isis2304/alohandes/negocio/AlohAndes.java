@@ -1,6 +1,6 @@
 package uniandes.isis2304.alohandes.negocio;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.sql.Time;
 import java.util.List;
@@ -348,14 +348,14 @@ public class AlohAndes {
 	/**********************************
 	 * Métodos para manejar las Reservas
 	 **********************************/
-	public Reserva adicionarReserva (Date fechaInicio, Date fechaFin, long idCliente, long idInmueble, String cancelado, long reservaColectiva)
+	public Reserva adicionarReserva (Timestamp fechaInicio, Timestamp fechaFin, long idCliente, long idInmueble, String cancelado, long reservaColectiva)
 	{
         log.info ("Adicionando Reserva" );
         Reserva reserva = pa.adicionarReserva(fechaInicio, fechaFin, idCliente, idInmueble, cancelado, reservaColectiva);		
         log.info ("Adicionando Reserva: " + reserva);
         return reserva;
 	}
-	public List<VOInmueble> inmueblesDisponibles(String tipo, Date fechaInicio, Date fechaFin, String servicioDeseado)
+	public List<VOInmueble> inmueblesDisponibles(String tipo, Timestamp fechaInicio, Timestamp fechaFin, String servicioDeseado)
 	{
 
 		log.info ("Generando los VO de inmuebles disponibles");        
@@ -367,7 +367,7 @@ public class AlohAndes {
         log.info ("Generando los VO de inmuebles disponibles: " + voInmuebles.size() + " existentes");
         return voInmuebles;
 	}
-	public ReservaColectiva adicionarReservaColectiva (long idCliente, String tipoEvento, Date fechaIni, Date fechaF, String tipoInmueble, Integer cantidad, List<VOInmueble> inmuebles)
+	public ReservaColectiva adicionarReservaColectiva (long idCliente, String tipoEvento, Timestamp fechaIni, Timestamp fechaF, String tipoInmueble, Integer cantidad, List<VOInmueble> inmuebles)
 	{
         log.info ("Adicionando Reserva Colectiva" );
         ReservaColectiva reserva = pa.adicionarReservaColectiva(idCliente, tipoEvento, fechaIni, fechaF, tipoInmueble, cantidad, inmuebles);		
