@@ -31,8 +31,8 @@ public class Casa extends Inmueble implements VOCasa{
 	  * @param cantHabitaciones
 	  * @param seguro
 	  */
-	 public Casa(long id, int costoBase, long idOperador, int cantHabitaciones, String seguro, String estado, String tipo) {
-		 super(id, costoBase, idOperador,estado,tipo);
+	 public Casa(long id, long idOperador, int costoBase, int cantHabitaciones, String seguro, String estado, String tipo) {
+		 super(id, idOperador, costoBase, estado, tipo);
 		 this.cantHabitaciones=cantHabitaciones;
 		 this.seguro=seguro;
 	 }
@@ -82,15 +82,15 @@ public class Casa extends Inmueble implements VOCasa{
 	 }
  
 	 @Override
-	 public long getIdOperador() {
+	 public long getOperador() {
 		 // TODO Auto-generated method stub
-		 return super.getIdOperador();
+		 return super.getOperador();
 	 }
  
 	 @Override
-	 public void setIdOperador(long idOperador) {
+	 public void setOperador(long idOperador) {
 		 // TODO Auto-generated method stub
-		 super.setIdOperador(idOperador);
+		 super.setOperador(idOperador);
 	 }
  
 	 @Override

@@ -62,14 +62,14 @@ public class SQLInmueble {
 		SimpleDateFormat formato= new SimpleDateFormat("dd/MM/yyyy");
 		String fInicial=formato.format(fechaInicio);
 		String fFinal=formato.format(fechaFin);
-		Query q = pm.newQuery(SQL, "SELECT I.* FROM (SELECT * FROM "+ pa.darTablaServicioInmueble()+" LEFT OUTER JOIN "+ 
-			pa.darTablaServicio()+" ON SERVICIO=SERVICIO.ID WHERE LOWER(NOMBRE)=LOWER('"+ servicioDeseado +"')) S INNER JOIN (SELECT INMUEBLE.* FROM "+ 
-			pa.darTablaInmueble() +" LEFT OUTER JOIN "+ 
-			pa.darTablaReserva() + " ON RESERVA.INMUEBLE=INMUEBLE.ID WHERE (FECHAINICIO>'"+ fInicial +"' OR FECHAFIN<'"+ fFinal +"' OR FECHAINICIO IS NULL) AND TIPO ='"+ tipo +"' AND ESTADO='Habilitada')I ON S.INMUEBLE=I.ID ORDER BY S.INMUEBLE;");
+		String sql= "SELECT I.* FROM (SELECT * FROM "
+		+pa.darTablaServicioInmueble()+ " LEFT OUTER JOIN "+pa.darTablaServicio() +" ON SERVICIO=SERVICIO.ID WHERE LOWER(NOMBRE)=LOWER(?)) S INNER JOIN (SELECT INMUEBLE.* FROM "+pa.darTablaInmueble() +" LEFT OUTER JOIN "+ pa.darTablaReserva() +" ON RESERVA.INMUEBLE=INMUEBLE.ID WHERE (FECHAINICIO>? OR FECHAFIN<? OR FECHAINICIO IS NULL) AND TIPO =? AND ESTADO='Habilitada')I ON S.INMUEBLE=I.ID ORDER BY S.INMUEBLE";
+		Query q = pm.newQuery(SQL, sql);
 		q.setResultClass(Inmueble.class);
-		return (List<Inmueble>) q.executeList();
-		
+		q.setParameters(servicioDeseado, fInicial, fFinal, tipo);
+		return q.executeList();
 	}
+
 
 	public long rehabilitarInmueble (PersistenceManager pm, long id)
 	{

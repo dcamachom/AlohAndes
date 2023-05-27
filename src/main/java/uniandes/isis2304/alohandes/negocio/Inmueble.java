@@ -9,8 +9,8 @@ public class Inmueble implements VOInmueble{
 	 * Atributos
 	 */
 	private long id;
+	private long operador;
 	private int costoBase;
-	private long idOperador;
 	private String estado;
 	private String tipo;
 	private List<Object []> serviciosIncluidos;
@@ -26,8 +26,8 @@ public class Inmueble implements VOInmueble{
 	 */
 	public Inmueble() {
 		this.id=0;
+		this.operador=0;
 		this.costoBase=0;
-		this.idOperador=0;
 		this.estado=null;
 		this.tipo=null;
 		serviciosIncluidos= new LinkedList<Object[]>();
@@ -41,10 +41,10 @@ public class Inmueble implements VOInmueble{
 	 * @param costoBase
 	 * @param disponible
 	 */
-	public Inmueble(long id, int costoBase, long idOperador, String estado, String tipo) {
+	public Inmueble(long id, long operador, int costoBase, String estado, String tipo) {
 		this.id=id;
+		this.operador=operador;
 		this.costoBase=costoBase;
-		this.idOperador=idOperador;
 		this.estado=estado;
 		this.tipo=tipo;
 		serviciosIncluidos= new LinkedList<Object[]>();
@@ -61,18 +61,22 @@ public class Inmueble implements VOInmueble{
 	public String getEstado(){
 		return estado;
 	}
+	public void setEstado( String estado){
+		this.estado=estado;
+	}
 
 	public String getTipo(){
 		return tipo;
+	}
+	public void setTipo(String tipo){
+		this.tipo=tipo;
 	}
 	
 	public void setId(long id) {
 		this.id=id;
 	}
 
-	@Override
 	public int getCostoBase() {
-		// TODO Auto-generated method stub
 		return costoBase;
 	}
 	
@@ -80,12 +84,12 @@ public class Inmueble implements VOInmueble{
 		this.costoBase=costoBase;
 	}
 	
-	public long getIdOperador() {
-		return idOperador;
+	public long getOperador() {
+		return operador;
 	}
 
-	public void setIdOperador(long idOperador) {
-		this.idOperador = idOperador;
+	public void setOperador(long operador) {
+		this.operador = operador;
 	}
 
 	public List<Object[]> getServiciosIncluidos() {

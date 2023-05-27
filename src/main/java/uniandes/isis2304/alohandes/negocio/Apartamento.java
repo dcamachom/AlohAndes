@@ -30,8 +30,8 @@ public class Apartamento extends Inmueble implements VOApartamento{
 	  * @param amoblado
 	  * @param cantHabitaciones
 	  */
-	 public Apartamento (long id, int costoBase, long idOperador, boolean amoblado, int cantHabitaciones, String estado, String tipo) {
-		 super(id, costoBase,idOperador, estado, tipo);
+	 public Apartamento (long id, long idOperador, int costoBase, boolean amoblado, int cantHabitaciones, String estado, String tipo) {
+		 super(id, idOperador, costoBase, estado, tipo);
 		 this.amoblado=amoblado;
 		 this.cantHabitaciones=cantHabitaciones;
 	 }
@@ -79,15 +79,15 @@ public class Apartamento extends Inmueble implements VOApartamento{
 	 }
  
 	 @Override
-	 public long getIdOperador() {
+	 public long getOperador() {
 		 // TODO Auto-generated method stub
-		 return super.getIdOperador();
+		 return super.getOperador();
 	 }
  
 	 @Override
-	 public void setIdOperador(long idOperador) {
+	 public void setOperador(long idOperador) {
 		 // TODO Auto-generated method stub
-		 super.setIdOperador(idOperador);
+		 super.setOperador(idOperador);
 	 }
  
 	 @Override

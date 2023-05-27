@@ -10,7 +10,9 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 import javax.jdo.JDODataStoreException;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -52,17 +54,17 @@ public class InterfazCliente extends JFrame implements ActionListener{
 	    configurarFrame ( );
 	    if (guiConfig != null) 	   
 	    {
-	   		crearMenu( guiConfig.getAsJsonArray("menuBar") );
+	   	crearMenu( guiConfig.getAsJsonArray("menuBar") );
 	    }
 	        
 	    tableConfig = openConfig ("Tablas BD", CONFIG_TABLAS);
 	    alohAndes = new AlohAndes (tableConfig);
 	        
-	    //String path = guiConfig.get("bannerPath").getAsString();
+	    String path = guiConfig.get("bannerPath").getAsString();
 	    panelDatos = new PanelDatos ( );
 
 	    setLayout (new BorderLayout());
-	    //add (new JLabel (new ImageIcon (path)), BorderLayout.NORTH );          
+	    add (new JLabel (new ImageIcon (path)), BorderLayout.NORTH );          
         add( panelDatos, BorderLayout.CENTER );        
 	   }
 	 
@@ -180,6 +182,27 @@ public class InterfazCliente extends JFrame implements ActionListener{
 			panelDatos.actualizarInterfaz(resultado);
 		 }
 	 }
+	 public void listarClientes( )
+     {
+    	try 
+    	{
+			List <VOCliente> lista = alohAndes.darVOClientes();
+
+			String resp = "Los clientes actuales son:\n";
+    		int i = 0;
+        	for (VOCliente tb : lista)
+        	{
+        		resp += i++ + ". " + tb.toString() + "\n";
+        	}
+			panelDatos.actualizarInterfaz(resp);
+			resp += "\n Operación terminada";
+		} 
+    	catch (Exception e) 
+    	{
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+    }
 	 
 	 public void cancelarReserva() {
 		 

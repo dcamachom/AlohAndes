@@ -32,8 +32,8 @@ public class Habitacion  extends Inmueble implements VOHabitacion{
 	  * @param compartida
 	  * @param tipo
 	  */
-	 public Habitacion(long id, int costoBase, long idOperador,int capacidad, boolean compartida, String tipo, String estado) {
-		 super(id, costoBase, idOperador, estado,tipo);
+	 public Habitacion(long id, long idOperador,int costoBase, int capacidad, boolean compartida, String tipo, String estado) {
+		 super(id, idOperador, costoBase, estado, tipo);
 		 this.capacidad=capacidad;
 		 this.compartida=compartida;
 		 this.tipo=tipo;
@@ -94,15 +94,15 @@ public class Habitacion  extends Inmueble implements VOHabitacion{
 	 }
  
 	 @Override
-	 public long getIdOperador() {
+	 public long getOperador() {
 		 // TODO Auto-generated method stub
-		 return super.getIdOperador();
+		 return super.getOperador();
 	 }
  
 	 @Override
-	 public void setIdOperador(long idOperador) {
+	 public void setOperador(long idOperador) {
 		 // TODO Auto-generated method stub
-		 super.setIdOperador(idOperador);
+		 super.setOperador(idOperador);
 	 }
  
 	 @Override

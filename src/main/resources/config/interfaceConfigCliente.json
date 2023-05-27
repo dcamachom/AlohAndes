@@ -1,8 +1,8 @@
- {
+{
 	"title": "Menu para el cliente",
 	"frameH": 600,
 	"frameW": 800,
-	"bannerPath": "./src/config/logo.png",
+	"bannerPath": "./src/main/resources/config/logo.png",
 	"menuBar":
 	[
 		{ "menuTitle":"Cliente",
@@ -11,7 +11,15 @@
 		  		{
 		  			"label":"Registro Cliente",
 		  			"event":"registroCliente"
-		  		}
+		  		},
+				{
+					"label":"Listar Inmuebles",
+					"event":"listarInmuebles"
+				},
+				{
+					"label":"Listar Clientes",
+					"event":"listarClientes"
+				}
 		  	]
 		},
 		{ "menuTitle":"Reserva Individual",

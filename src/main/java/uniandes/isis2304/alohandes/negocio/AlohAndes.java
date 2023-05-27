@@ -1,6 +1,7 @@
 package uniandes.isis2304.alohandes.negocio;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.sql.Time;
 import java.util.List;
 
@@ -134,12 +135,16 @@ public class AlohAndes {
         log.info ("Eliminando Cliente por id: " + resp + " tuplas eliminadas");
         return resp;
 	}
-	public List<Cliente> darClientes ()
+	public List<VOCliente> darVOClientes ()
 	{
-		log.info ("Consultando Clientes");
-        List<Cliente> clientes = pa.darClientes ();	
-        log.info ("Consultando Clientes: " + clientes.size() + " existentes");
-        return clientes;
+		log.info ("Generando los VO de Tipos de bebida");        
+        List<VOCliente> voClientes = new LinkedList<VOCliente> ();
+        for (Cliente tb : pa.darClientes())
+        {
+        	voClientes.add (tb);
+        }
+        log.info ("Generando los VO de Tipos de bebida: " + voClientes.size() + " existentes");
+        return voClientes;
 	}
 	public Cliente darClientePorId (long id)
 	{
@@ -352,10 +357,15 @@ public class AlohAndes {
 	}
 	public List<VOInmueble> inmueblesDisponibles(String tipo, Date fechaInicio, Date fechaFin, String servicioDeseado)
 	{
-        log.info ("Inmuebles disponibles" );
-        List<VOInmueble> inmuebles = pa.inmueblesDisponibles(tipo, fechaInicio, fechaFin, servicioDeseado);		
-        log.info ("Inmuebles disponibles");
-        return inmuebles;
+
+		log.info ("Generando los VO de inmuebles disponibles");        
+        List<VOInmueble> voInmuebles = new LinkedList<VOInmueble> ();
+        for (VOInmueble im : pa.inmueblesDisponibles(tipo, fechaInicio, fechaFin, servicioDeseado))
+        {
+        	voInmuebles.add (im);
+        }
+        log.info ("Generando los VO de inmuebles disponibles: " + voInmuebles.size() + " existentes");
+        return voInmuebles;
 	}
 	public ReservaColectiva adicionarReservaColectiva (long idCliente, String tipoEvento, Date fechaIni, Date fechaF, String tipoInmueble, Integer cantidad, List<VOInmueble> inmuebles)
 	{

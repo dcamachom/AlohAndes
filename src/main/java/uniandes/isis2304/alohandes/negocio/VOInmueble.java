@@ -12,7 +12,7 @@ public interface VOInmueble {
 	
 	 public int getCostoBase();
 	 
-	 public long getIdOperador();
+	 public long getOperador();
  
 	 public String getEstado();
  

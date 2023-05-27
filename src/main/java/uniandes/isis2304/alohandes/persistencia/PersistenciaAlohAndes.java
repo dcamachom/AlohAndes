@@ -268,7 +268,7 @@ public class PersistenciaAlohAndes {
             
             log.trace ("Inserción del apartamento: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
             
-            return new Apartamento (id, costoBase, idOperador, amoblado, cantHabitaciones, estado, tipo);
+            return new Apartamento (id, idOperador, costoBase, amoblado, cantHabitaciones, estado, tipo);
         }
         catch (Exception e)
         {
@@ -338,7 +338,7 @@ public class PersistenciaAlohAndes {
              tx.commit();
              
              log.trace ("Inserción casa: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
-             return new Casa (id, costoBase, idOperador, cantHabitaciones, seguro, "Habilitada", "Casa");
+             return new Casa (id, idOperador, costoBase, cantHabitaciones, seguro, "Habilitada", "Casa");
          }
          catch (Exception e)
          {
@@ -514,7 +514,7 @@ public class PersistenciaAlohAndes {
              
              log.trace ("Inserción de la habitacion: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
              
-             return new Habitacion (id, costoBase, idOperador, capacidad, compartida,tipo,"Habilitada");
+             return new Habitacion (id, idOperador, costoBase, capacidad, compartida,tipo,"Habilitada");
          }
          catch (Exception e)
          {
@@ -730,7 +730,7 @@ public class PersistenciaAlohAndes {
              
              log.trace ("Inserción del Inmueble: " + id + ": " + tuplasInsertadas + " tuplas insertadas");
              
-             return new Inmueble (id, costoBase, idOperador, estado, tipo);
+             return new Inmueble (id, idOperador, costoBase, estado, tipo);
          }
          catch (Exception e)
          {
@@ -992,13 +992,13 @@ public class PersistenciaAlohAndes {
          }
      }
  
-     public List<VOInmueble> inmueblesDisponibles(String tipo, Date fechaInicio, Date fechaFin, String servicioDeseado)
+     public List<Inmueble> inmueblesDisponibles(String tipo, Date fechaInicio, Date fechaFin, String servicioDeseado)
      {
          List<Inmueble> lista=sqlInmueble.darInmueblesDisponibles(pmf.getPersistenceManager(), tipo, fechaInicio, fechaFin, servicioDeseado);
-         List<VOInmueble> listaVo= new ArrayList<>();
+         List<Inmueble> listaVo= new ArrayList<>();
          for (int i=0;i<lista.size();i++)
          {
-             VOInmueble vo=lista.get(i);
+             Inmueble vo=lista.get(i);
              listaVo.add(vo);
          }
          return listaVo ;
