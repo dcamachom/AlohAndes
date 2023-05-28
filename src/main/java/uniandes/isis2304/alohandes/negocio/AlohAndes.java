@@ -275,14 +275,6 @@ public class AlohAndes {
 		return inmueble;
 	}
 
-	public long rehabilitarInmueble(long id)
-	{
-		log.info("rehabilitando inmueble");
-		long resp= pa.rehabilitarInmueble(id);
-		log.info("Inmueble rehabilitado");
-		return resp;
-	}
-
 	/**************************************
 	 * Métodos para manejar los Operadores
 	 *************************************/
@@ -374,7 +366,37 @@ public class AlohAndes {
         log.info ("Adicionando Reserva: " + reserva);
         return reserva;
 	}
-
+	public List<List<Long>> deshabilitarInmueble(long id, List reservas, String tipo)
+	{
+		log.info ("Buscando Inmueble por id: " + id);
+		List<List<Long>> resp = pa.deshabilitarInmueble(id, reservas, tipo);
+		return resp;
+	}
+	public long rehabilitarInmueble(long id)
+	{
+		log.info("rehabilitando inmueble");
+		long resp= pa.rehabilitarInmueble(id);
+		log.info("Inmueble rehabilitado");
+		return resp;
+	}
+	public List<VOReserva> reservasPorInmueble(Long inmueble)
+	{
+		log.info ("Generando los VO de reservas por inmueble");        
+        List<VOReserva> voReservas = new LinkedList<VOReserva> ();
+        for (VOReserva re : pa.reservasPorInmueble(inmueble))
+        {
+        	voReservas.add (re);
+        }
+        log.info ("Generando los VO de reservas por inmueble: " + voReservas.size() + " existentes");
+        return voReservas;
+	}
+	public String darTipoInmueble (Long inmueble)
+	{
+		log.info ("Consultando tipo de inmueble");
+        String tipo = pa.darTipoInmueble(inmueble);	
+        log.info ("Consultando tipo de inmueble: " + inmueble);
+        return tipo;
+	}
 	public long eliminarReservaPorId (long idReserva)
 	{
 		log.info ("Eliminando Reserva por id: " + idReserva);

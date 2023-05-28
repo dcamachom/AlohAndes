@@ -330,3 +330,196 @@ Tipo de columna no válido
 09:36:52,772 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de inmuebles disponibles: 3 existentes
 09:36:52,772 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Reserva Colectiva
 09:36:53,322 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Reserva: Reserva [id=102, Tipo Evento=Estandar, Tipo AlojamientoFeria, Cantidad2]
+09:46:11,047 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+09:46:11,047 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+09:46:11,110 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+09:47:12,702 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+09:47:12,702 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+09:47:12,750 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+09:47:28,378 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Reserva
+09:47:28,978 (AWT-EventQueue-0) ERROR [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO RESERVA(id, cliente, inmueble, fechaInicio, fechaFin, cancelado, reservaColectiva) values (?, ?, ?, ?, ?, ?, ?)".
+ORA-02291: restricción de integridad (ISIS2304C05202310.SYS_C001050202) violada - clave principal no encontrada
+
+09:47:29,009 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Reserva: null
+20:50:00,885 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+20:50:00,886 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+20:50:00,938 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+20:50:34,736 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Reserva
+20:50:35,481 (AWT-EventQueue-0) ERROR [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "INSERT INTO RESERVA(id, cliente, inmueble, fechaInicio, fechaFin, cancelado, reservaColectiva) values (?, ?, ?, ?, ?, ?, ?)".
+ORA-01722: número no válido
+
+20:50:35,532 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Reserva: null
+20:51:58,310 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+20:51:58,311 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+20:51:58,373 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+20:52:25,727 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Reserva
+20:52:26,333 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Adicionando Reserva: Reserva [id=122, Fecha inicio=2022-04-23 00:00:00.0, Fecha fin=2022-04-26 00:00:00.0, Cancelado=False, id cliente=1, id inmueble=5, Reserva colectiva0]
+20:56:00,577 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+20:56:00,578 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+20:56:00,617 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+20:56:49,721 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+20:56:49,722 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+20:56:49,751 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+20:56:58,348 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - rehabilitando inmueble
+20:56:58,764 (AWT-EventQueue-0) ERROR [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - Exception : Error con la ejecucion de Query de SQL "UPTimestamp INMUEBLE SET ESTADO='Habilitada' WHERE ID=?".
+ORA-00900: sentencia SQL no válida
+
+20:56:58,809 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Inmueble rehabilitado
+20:58:03,755 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+20:58:03,756 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+20:58:03,805 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+20:58:12,640 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - rehabilitando inmueble
+20:58:13,005 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Inmueble rehabilitado
+21:52:31,289 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+21:52:31,290 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+21:52:31,335 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+21:52:42,421 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+21:52:42,621 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+21:52:42,621 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+21:53:33,191 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+21:53:33,192 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+21:53:33,219 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+21:53:39,847 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+21:53:40,015 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+21:53:40,016 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+21:53:40,075 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+21:53:40,075 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+21:57:51,259 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+21:57:51,260 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+21:57:51,308 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+21:58:00,192 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+21:58:00,402 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+21:58:00,402 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+21:58:00,462 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+21:58:00,463 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+22:02:53,948 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:02:53,949 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:02:53,976 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:03:03,035 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+22:03:03,259 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+22:03:03,260 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+22:03:03,322 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+22:03:03,322 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+22:08:44,367 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:08:44,368 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:08:44,409 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:08:52,478 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+22:08:52,746 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 1 existentes
+22:08:52,747 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+22:08:52,802 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+22:08:52,802 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+22:13:23,801 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:13:23,802 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:13:23,833 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:13:32,403 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+22:13:32,617 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 1 existentes
+22:13:32,617 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+22:13:32,676 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+22:13:32,676 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+22:13:32,680 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - 
+22:15:58,697 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:15:58,698 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:15:58,732 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:16:07,042 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+22:16:07,236 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 1 existentes
+22:16:07,236 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+22:16:07,284 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+22:16:07,284 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+22:16:07,299 (AWT-EventQueue-0) ERROR [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - Exception : Cannot invoke "java.sql.Timestamp.toString()" because "fInicio" is null
+
+22:23:23,444 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:23:23,445 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:23:23,489 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:23:31,535 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+22:23:31,731 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 1 existentes
+22:23:31,731 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+22:23:31,787 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+22:23:31,787 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+22:25:28,436 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:25:28,437 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:25:28,475 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:25:52,572 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+22:25:52,784 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 1 existentes
+22:25:52,784 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+22:25:52,841 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+22:25:52,841 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+22:25:52,847 (AWT-EventQueue-0) ERROR [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - Exception : Cannot invoke "java.sql.Timestamp.toString()" because "fInicio" is null
+
+22:27:25,785 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:27:25,786 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:27:25,825 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:27:37,896 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+22:30:37,039 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:30:37,041 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:30:37,073 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:30:45,774 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+22:33:25,994 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+22:33:25,994 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+22:33:26,032 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+22:33:33,838 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:04:25,930 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+23:04:25,931 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+23:04:25,975 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+23:04:35,421 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:04:35,617 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+23:04:35,618 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+23:04:35,672 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+23:04:35,672 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+23:10:06,313 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+23:10:06,313 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+23:10:06,364 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+23:10:13,374 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:10:13,595 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+23:10:13,596 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+23:10:13,657 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+23:10:13,658 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+23:12:23,878 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+23:12:23,879 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+23:12:23,910 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+23:12:30,335 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:12:30,512 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 1 existentes
+23:12:30,513 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+23:12:30,569 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+23:12:30,569 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+23:12:30,582 (AWT-EventQueue-0) ERROR [uniandes.isis2304.alohandes.persistencia.PersistenciaAlohAndes] - Exception : Cannot invoke "java.sql.Timestamp.toString()" because "fInicio" is null
+
+23:13:10,270 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+23:13:10,270 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+23:13:10,306 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+23:13:16,056 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:13:16,232 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 1 existentes
+23:13:16,232 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+23:13:16,283 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 1
+23:13:16,283 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 1
+23:20:45,865 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+23:20:45,865 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+23:20:45,913 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+23:20:55,258 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:20:55,457 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+23:20:55,457 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+23:20:55,507 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 2
+23:20:55,507 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 2
+23:29:50,082 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+23:29:50,084 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+23:29:50,120 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+23:29:58,870 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:29:59,045 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+23:29:59,045 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+23:29:59,095 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 2
+23:29:59,096 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 2
+23:31:21,244 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+23:31:21,245 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+23:31:21,273 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+23:31:28,462 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:31:28,659 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+23:31:28,660 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+23:31:28,713 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 2
+23:31:28,713 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 2
+23:34:26,659 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Interfaz
+23:34:26,660 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se aplica configuración indicada en el archivo de configuración
+23:34:26,698 (main) INFO  [uniandes.isis2304.alohandes.interfaz.InterfazCliente] - Se encontró un archivo de configuración válido: Tablas BD
+23:34:35,562 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble
+23:34:35,755 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Generando los VO de reservas por inmueble: 0 existentes
+23:34:35,755 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble
+23:34:35,809 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Consultando tipo de inmueble: 2
+23:34:35,809 (AWT-EventQueue-0) INFO  [uniandes.isis2304.alohandes.negocio.AlohAndes] - Buscando Inmueble por id: 2

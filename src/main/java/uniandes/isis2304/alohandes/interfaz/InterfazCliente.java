@@ -225,12 +225,12 @@ public class InterfazCliente extends JFrame implements ActionListener{
 	 public void registroReserva() {
 		try {
 			 
-			String fechaInicio= JOptionPane.showInputDialog(this, "Fecha inicial de la reserva (dd/mm/yyyy)?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
-			String fechaFin=JOptionPane.showInputDialog(this, "Fecha final de la reserva (dd/mm/yyyy)", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
+			String fechaInicio= JOptionPane.showInputDialog(this, "Fecha inicial de la reserva (yyyy-mm-dd)?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
+			String fechaFin=JOptionPane.showInputDialog(this, "Fecha final de la reserva (yyyy-mm-dd)", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
 			String idCliente=JOptionPane.showInputDialog(this, "Cliente que desea la reserva?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
 			String idInmueble=JOptionPane.showInputDialog(this, "En qué inmueble desea la reserva?", "Registro reserva", JOptionPane.QUESTION_MESSAGE);
 			if (fechaInicio!=null && fechaFin!=null && idCliente!=null && idInmueble!=null) {
-				VOReserva tb= alohAndes.adicionarReserva(Timestamp.valueOf(fechaInicio), Timestamp.valueOf(fechaFin), Long.parseLong(idCliente), Long.parseLong(idInmueble), "False", 0);
+				VOReserva tb= alohAndes.adicionarReserva(Timestamp.valueOf(fechaInicio+=" 00:00:00.00"), Timestamp.valueOf(fechaFin+=" 00:00:00.00"), Long.parseLong(idCliente), Long.parseLong(idInmueble), "False", 0);
 				if (tb == null)
 				   {
 					   throw new Exception ("No se agregó la reserva para el cliente:" +idCliente+" en el inmueble: "+idInmueble );
@@ -253,8 +253,8 @@ public class InterfazCliente extends JFrame implements ActionListener{
 		try {
 			String idCliente=JOptionPane.showInputDialog(this, "Cliente que desea la reserva colectiva?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
 			String tipoEvento=JOptionPane.showInputDialog(this, "Tipo de evento?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
-			String fechaInicio= JOptionPane.showInputDialog(this, "Fecha inicial de la reserva (dd/mm/yyyy)?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
-			String fechaFin=JOptionPane.showInputDialog(this, "Fecha final de la reserva (dd/mm/yyyy)", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
+			String fechaInicio= JOptionPane.showInputDialog(this, "Fecha inicial de la reserva (yyyy-mm-dd)?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
+			String fechaFin=JOptionPane.showInputDialog(this, "Fecha final de la reserva (yyyy-mm-dd)", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
 			String tipoInmueble= JOptionPane.showInputDialog(this, "Tipo de inmueble (Suite, Semisuite, Estandar, Casa o Apartamento)?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
 			String servicioDeseado= JOptionPane.showInputDialog(this, "Servicio deseado?", "Registro reserva colectiva", JOptionPane.QUESTION_MESSAGE);
 			String cantidad= JOptionPane.showInputDialog(this, "Cantidad de personas?", "Registro reserva colectiva colectiva", JOptionPane.QUESTION_MESSAGE);
@@ -305,7 +305,6 @@ public class InterfazCliente extends JFrame implements ActionListener{
 			panelDatos.actualizarInterfaz(resultado);
 		}
 	 }
-	 
 	
 	 /*
 	  * Main

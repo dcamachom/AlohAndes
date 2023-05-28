@@ -1,6 +1,6 @@
 package uniandes.isis2304.alohandes.negocio;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface VOReserva {
@@ -10,13 +10,13 @@ public interface VOReserva {
 	 */
 	public long getId();	
 
-	public long getIdCliente();
+	public long getCliente();
 
 	public long getIdInmueble();
 	
-	public Date getFechaInicio();
+	public Timestamp getFechaInicio();
 	
-	public Date getFechaFin();
+	public Timestamp getFechaFin();
 	
 	public String getCancelado();
 

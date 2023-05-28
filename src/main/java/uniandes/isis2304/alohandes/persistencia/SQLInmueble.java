@@ -65,13 +65,33 @@ public class SQLInmueble {
 		q.setParameters(servicioDeseado, fechaInicio, fechaFin, tipo);
 		return q.executeList();
 	}
-
-
+	public List<Inmueble> darInmueblesDisponiblesSinServicio (PersistenceManager pm, String tipo, Timestamp fechaInicio, Timestamp fechaFin)
+	{
+		String sql= "SELECT I.* FROM (SELECT * FROM "
+		+pa.darTablaServicioInmueble()+ " LEFT OUTER JOIN "+pa.darTablaServicio() +" ON SERVICIO=SERVICIO.ID) S INNER JOIN (SELECT INMUEBLE.* FROM "+pa.darTablaInmueble() +" LEFT OUTER JOIN "+ pa.darTablaReserva() +" ON RESERVA.INMUEBLE=INMUEBLE.ID WHERE (FECHAINICIO>? OR FECHAFIN<? OR FECHAINICIO IS NULL) AND TIPO =? AND ESTADO='Habilitada')I ON S.INMUEBLE=I.ID ORDER BY S.INMUEBLE";
+		Query q = pm.newQuery(SQL, sql);
+		q.setResultClass(Inmueble.class);
+		q.setParameters(fechaInicio, fechaFin, tipo);
+		return q.executeList();
+	}
+	public long deshabilitarInmueble(PersistenceManager pm, long id)
+	{
+		Query q= pm.newQuery(SQL, "UPDATE "+pa.darTablaInmueble()+" SET ESTADO='Deshabilitada' WHERE ID=?");
+		q.setParameters(id);
+		return (long) q.executeUnique();
+	}
 	public long rehabilitarInmueble (PersistenceManager pm, long id)
 	{
-		Query q= pm.newQuery(SQL, "UPTimestamp "+pa.darTablaInmueble()+" SET ESTADO='Habilitada' WHERE ID=?");
+		Query q= pm.newQuery(SQL, "UPDATE "+pa.darTablaInmueble()+" SET ESTADO='Habilitada' WHERE ID=?");
 		q.setParameters(id);
 		return (long) q.executeUnique();  
+	}
+	public String darTipoInmueble (PersistenceManager pm, long id) 
+	{
+		Query q = pm.newQuery(SQL, "SELECT TIPO FROM " + pa.darTablaInmueble () + " WHERE id = ?");
+		q.setResultClass(String.class);
+		q.setParameters(id);
+		return (String) q.executeUnique();
 	}
 	
 }

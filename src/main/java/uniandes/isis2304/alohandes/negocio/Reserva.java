@@ -1,6 +1,6 @@
 package uniandes.isis2304.alohandes.negocio;
 
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,8 +11,8 @@ public class Reserva implements VOReserva{
 	 */
 	
 	 private long id;
-	 private Date fechaInicio;
-	 private Date fechaFin;
+	 private Timestamp fechaInicio;
+	 private Timestamp fechaFin;
 	 private String cancelado;
 	 private long idCliente;
 	 private long idInmueble;
@@ -36,7 +36,7 @@ public class Reserva implements VOReserva{
 	 /**
 	  * Método constructor con valores
 	  */
-	  public Reserva(long id, Date fechaInicio, Date fechaFin, long idCliente, long idInmueble, String cancelado, long reservaColectiva) {
+	  public Reserva(long id, Timestamp fechaInicio, Timestamp fechaFin, long idCliente, long idInmueble, String cancelado, long reservaColectiva) {
 		  this.id=id;
 		  this.fechaInicio=fechaInicio;
 		  this.fechaFin=fechaFin;
@@ -55,21 +55,27 @@ public class Reserva implements VOReserva{
 		 this.id=id;
 	 }
  
-	 public Date getFechaInicio() {
+	 public Timestamp getFechaInicio() {
 		 return this.fechaInicio;
 	 }
 	 
-	 public void setFechaInicio( Date fechaInicio) {
+	 public void setFechaInicio( Timestamp fechaInicio) {
 		 this.fechaInicio=fechaInicio;
 	 }
+	 public void setFECHAINICIO( Timestamp fechaInicio) {
+		this.fechaInicio=fechaInicio;
+	}
  
-	 public Date getFechaFin() {
+	 public Timestamp getFechaFin() {
 		 return this.fechaFin;
 	 }
 	 
-	 public void setFechaFin(Date fechaFin) {
+	 public void setFechaFin(Timestamp fechaFin) {
 		 this.fechaFin=fechaFin;
 	 }
+	 public void setFECHAFIN(Timestamp fechaFin) {
+		this.fechaFin=fechaFin;
+	}
  
 	 public long getReservaColectiva() {
 		 return reservaColectiva;
@@ -78,22 +84,31 @@ public class Reserva implements VOReserva{
 	 public void setReservaColectiva(long reservaColectiva) {
 		 this.reservaColectiva = reservaColectiva;
 	 }
+	 public void setRESERVACOLECTIVA(long reservaColectiva) {
+		this.reservaColectiva = reservaColectiva;
+	}
  
-	 public long getIdCliente() {
+	 public long getCliente() {
 		 return this.idCliente;
 	 }
 	 
-	 public void setIdCliente(long idCliente) {
+	 public void setCliente(long idCliente) {
 		 this.idCliente=idCliente;
 	 }
+	 public void setCLIENTE(long idCliente) {
+		this.idCliente=idCliente;
+	}
 	 
 	 public long getIdInmueble() {
 		 return this.idInmueble;
 	 }
 	 
-	 public void setIdInmueble(long idInmueble) {
+	 public void setInmueble(long idInmueble) {
 		 this.idInmueble=idInmueble;
 	 }
+	 public void setINMUEBLE(long idInmueble) {
+		this.idInmueble=idInmueble;
+	}
  
 	 public String getCancelado(){
 		 return cancelado;
@@ -102,6 +117,9 @@ public class Reserva implements VOReserva{
 	 public void setCancelado (String cancelado){
 		 this.cancelado=cancelado;
 	 }
+	 public void setCANCELADO (String cancelado){
+		this.cancelado=cancelado;
+	}
  
 	 public List<Object[]> getServiciosUsados() {
 		 return serviciosUsados;

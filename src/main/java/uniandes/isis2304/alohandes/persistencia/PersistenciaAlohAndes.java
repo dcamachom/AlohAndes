@@ -31,6 +31,7 @@ import uniandes.isis2304.alohandes.negocio.Servicio;
 import uniandes.isis2304.alohandes.negocio.ServicioInmueble;
 import uniandes.isis2304.alohandes.negocio.ServicioUsado;
 import uniandes.isis2304.alohandes.negocio.VOInmueble;
+import uniandes.isis2304.alohandes.negocio.VOReserva;
 import uniandes.isis2304.alohandes.negocio.ViviendaUniversitaria;
 
 public class PersistenciaAlohAndes {
@@ -785,33 +786,6 @@ public class PersistenciaAlohAndes {
 		return sqlInmueble.darInmueblePorId (pmf.getPersistenceManager(), id);
 	}
 
-    public long rehabilitarInmueble(long id)
-    {
-        PersistenceManager pm = pmf.getPersistenceManager();
-        Transaction tx=pm.currentTransaction();
-        try
-        {
-            tx.begin();
-            long resp= sqlInmueble.rehabilitarInmueble(pm, id);
-            tx.commit();
-            return resp;
-        }
-        catch (Exception e)
-        {
-        	//e.printStackTrace();
-        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
-            return -1;
-        }
-        finally
-        {
-            if (tx.isActive())
-            {
-                tx.rollback();
-            }
-            pm.close();
-        }
-    }
-	
 	/* **************************
 	 * Métodos de los OPERADORES
 	 ****************************/
@@ -1003,6 +977,108 @@ public class PersistenciaAlohAndes {
          }
          return listaVo ;
      }	
+     public List<Inmueble> inmueblesDisponiblesSinServicio(String tipo, Timestamp fechaInicio, Timestamp fechaFin)
+     {
+         List<Inmueble> lista=sqlInmueble.darInmueblesDisponiblesSinServicio(pmf.getPersistenceManager(), tipo, fechaInicio, fechaFin);
+         List<Inmueble> listaVo= new ArrayList<>();
+         for (int i=0;i<lista.size();i++)
+         {
+             Inmueble vo=lista.get(i);
+             listaVo.add(vo);
+         }
+         return listaVo ;
+     }	
+     public List<List<Long>> deshabilitarInmueble(long id, List<Reserva> reservas, String tipo)
+    {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            List<List<Long>> resp= new LinkedList<List<Long>>();
+            List<Long> noHechos= new LinkedList<Long>();
+            List<Long> hechos= new LinkedList<Long>(); 
+            for(Reserva r: reservas)
+            {
+                Timestamp fInicio=r.getFechaInicio();
+                log.info(fInicio.toString());
+                Timestamp fFin=r.getFechaFin();
+                List<Inmueble> inmueblesDisp=inmueblesDisponiblesSinServicio(tipo, fInicio, fFin);
+                if(inmueblesDisp.size()>=1)
+                {
+                    sqlReserva.actualizarReserva(pm, r.getId(), inmueblesDisp.get(0).getId());
+                    hechos.add(r.getId());
+                }
+                else
+                {
+                    noHechos.add(r.getId());
+                }
+            }
+            sqlInmueble.deshabilitarInmueble(pm, id);
+            resp.add(hechos);
+            resp.add(noHechos);
+            tx.commit();
+
+            return resp;
+        }
+        catch (Exception e)
+        {
+        	//e.printStackTrace();
+            System.out.println("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+    }
+    public long rehabilitarInmueble(long id)
+    {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            long resp= sqlInmueble.rehabilitarInmueble(pm, id);
+            tx.commit();
+            return resp;
+        }
+        catch (Exception e)
+        {
+        	//e.printStackTrace();
+            System.out.println("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return -1;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+    }
+    public List<Reserva> reservasPorInmueble(long inmueble)
+    {
+        List<Reserva> lista=sqlReserva.reservasPorInmueble(pmf.getPersistenceManager(), inmueble);
+        List<Reserva> listaVo= new ArrayList<>();
+         for (int i=0;i<lista.size();i++)
+         {
+             Reserva vo=lista.get(i);
+             listaVo.add(vo);
+         }
+         return listaVo ;
+    }
+    public String darTipoInmueble (Long inmueble)
+     {
+         return sqlInmueble.darTipoInmueble(pmf.getPersistenceManager(), inmueble);
+     }
      public long eliminarReservaPorId (long id) 
      {
          PersistenceManager pm = pmf.getPersistenceManager();

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import javax.jdo.JDODataStoreException;
 import javax.swing.JFrame;
@@ -283,7 +284,54 @@ public class InterfazOperador extends JFrame implements ActionListener{
 			   panelDatos.actualizarInterfaz(resultado);
 			}
 	 }
-	 
+	 public void deshabilitarOferta()
+	 {
+		try
+		{
+			String inmueble= JOptionPane.showInputDialog(this,"Oferta de alojamiento a deshabilitar");
+			if(inmueble!=null)
+			{
+				List<VOReserva> reservas=alohAndes.reservasPorInmueble(Long.parseLong(inmueble));
+				String tipo= alohAndes.darTipoInmueble(Long.parseLong(inmueble));
+				List<List<Long>> resp= alohAndes.deshabilitarInmueble(Long.parseLong(inmueble), reservas, tipo);
+				String resultado = "En deshabilitarInmueble \n\n";
+				for(int i=0;i<resp.get(0).size();i++)
+				{
+					resultado += "Reserva "+resp.get(0).get(i)+" reubicada exitosamente \n";
+				}
+				for(int i=0;i<resp.get(1).size();i++)
+				{
+					resultado += "Reserva "+resp.get(1).get(i)+" no reubicada exitosamente \n";
+				}
+	     		resultado += "Inmueble "+inmueble+" deshabilitado exitosamente";
+	 			resultado += "\n Operación terminada";
+	 			panelDatos.actualizarInterfaz(resultado);
+			}
+		}
+		catch(Exception e) {
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	 }
+	 public void rehabilitarOferta()
+	 {
+		try
+		{
+			String idOferta= JOptionPane.showInputDialog(this,"Oferta de alojamiento a rehabilitar");
+			if(idOferta!=null)
+			{
+				long resp= alohAndes.rehabilitarInmueble(Long.parseLong(idOferta));
+				String resultado = "En rehabilitarInmueble \n\n";
+	     		resultado += "Inmueble "+idOferta+" rehabilitado exitosamente";
+	 			resultado += "\n Operación terminada";
+	 			panelDatos.actualizarInterfaz(resultado);
+			}
+		}
+		catch(Exception e) {
+			String resultado = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultado);
+		}
+	 }
 	 
 	 /*
 	  * Main

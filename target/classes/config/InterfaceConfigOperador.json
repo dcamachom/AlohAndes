@@ -21,11 +21,11 @@
 		  		},
 				{
 					"label": "Deshabilitar oferta de alojamiento",
-					"event": "deshabilitarOfertaDeAlojamiento"
+					"event": "deshabilitarOferta"
 				},
 				{
 					"label":"Rehabilitar oferta de alojamiento",
-					"event":"rehabilitarOfertaDeAlojamiento"
+					"event":"rehabilitarOferta"
 				}
 		  	]
 		}
